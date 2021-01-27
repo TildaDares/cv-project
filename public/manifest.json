@@ -3,8 +3,18 @@
   "name": "CV Maker",
   "icons": [
     {
-      "src": "cv2.jpg",
-      "type": "image/jpg",
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "android-chrome-1922x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
