@@ -1,6 +1,8 @@
 #general {
   padding-top: 20px;
+  padding-bottom: 20px;
 }
+
 .name {
   font-size: 3rem !important;
 }
@@ -28,4 +30,11 @@
 
 .input-margin {
   margin-right: 10px !important;
+}
+
+.description {
+  font-size: 1.25rem !important;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
 }

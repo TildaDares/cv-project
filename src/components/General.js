@@ -2,14 +2,13 @@ import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import "../styles/general.css";
 export default function General(props) {
-  return (
+	return (
 		<div id="general">
 			<InputBase
 				className="name heading"
 				id="standard-multiline-flexible"
 				placeholder="Jane Doe"
 				readOnly={props.readOnly}
-				color="primary"
 				multiline
 				rowsMax={4}
 				inputProps={{ "aria-label": "name" }}
@@ -44,6 +43,14 @@ export default function General(props) {
 					type="email"
 				/>
 			</div>
+			<InputBase
+				className="description"
+				placeholder="Tell me about yourself"
+				readOnly={props.readOnly}
+				multiline
+				rowsMax={4}
+				inputProps={{ "aria-label": "description" }}
+			/>
 		</div>
 	);
 }
