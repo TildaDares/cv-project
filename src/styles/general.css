@@ -1,0 +1,32 @@
+#general {
+  padding-top: 20px;
+}
+.name {
+  font-size: 3rem !important;
+}
+
+.profession {
+  color: #9b9b9b !important;
+  font-size: 1.6rem !important;
+}
+
+.profession-mb {
+  margin-bottom: 10px;
+}
+
+.form {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.paper {
+  margin-top: 80px;
+}
+
+.form-inputs {
+  width: 100%;
+}
+
+.input-margin {
+  margin-right: 10px !important;
+}
