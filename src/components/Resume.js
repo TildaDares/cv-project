@@ -5,7 +5,7 @@ function Resume(props) {
 	return (
 		<Paper elevation={3} className="paper">
 			<form noValidate className="form" autoComplete="off">
-				<General />
+				<General readOnly={props.readOnly} />
 			</form>
 		</Paper>
 	);
