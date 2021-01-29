@@ -4,17 +4,24 @@ import Resume from "./components/Resume";
 import "../styles/main.css";
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state {
-      
-    }  
-  }
+	constructor() {
+		super();
+		this.state = {
+			readOnly: "false",
+		};
+		this.handleReadOnlyChange = this.handleReadOnlyChange.bind(this);
+	}
 
+	handleReadOnlyChange(event) {
+		this.setState({
+			readOnly: event.target.checked,
+		});
+  }
+  
 	render() {
 		return (
 			<div>
-				<NavBar/>
+				<NavBar />
 				<Resume />
 			</div>
 		);
