@@ -16,12 +16,12 @@ class App extends React.Component {
 		this.setState({
 			readOnly: event.target.checked,
 		});
-  }
-  
+	}
+
 	render() {
 		return (
 			<div>
-				<NavBar />
+				<NavBar handleChange={this.handleReadOnlyChange} />
 				<Resume />
 			</div>
 		);

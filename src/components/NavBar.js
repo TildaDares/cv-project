@@ -17,7 +17,7 @@ function NavBar(props) {
 				<FormControlLabel
 					control={
 						<Switch
-							onChange={props.handleReadOnlyChange}
+							onChange={props.handleChange}
 							name="read-only"
 							color="primary"
 						/>
