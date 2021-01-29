@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "./components/NavBar";
 import Resume from "./components/Resume";
-import "../styles/main.css";
+import "./styles/main.css";
 
 class App extends React.Component {
 	constructor() {
@@ -22,7 +22,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<NavBar handleChange={this.handleReadOnlyChange} />
-				<Resume />
+				<Resume readOnly={this.state.readOnly} />
 			</div>
 		);
 	}
