@@ -4,6 +4,13 @@ import Resume from "./components/Resume";
 import "../styles/main.css";
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state {
+      
+    }  
+  }
+
 	render() {
 		return (
 			<div>
