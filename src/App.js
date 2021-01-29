@@ -7,7 +7,7 @@ class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			readOnly: "false",
+			readOnly: false,
 		};
 		this.handleReadOnlyChange = this.handleReadOnlyChange.bind(this);
 	}
