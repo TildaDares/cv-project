@@ -1,6 +1,6 @@
 #general {
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 
 .name {
@@ -28,4 +28,7 @@
 
 .general-input input:focus {
   border-bottom: 1px solid green !important;
+}
+.float-right {
+  float: right;
 }

@@ -3,7 +3,9 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import PhoneIcon from "@material-ui/icons/Phone";
 import EmailIcon from '@material-ui/icons/Email';
 import HomeIcon from "@material-ui/icons/Home";
+import Button from "@material-ui/core/Button";
 import "../styles/general.css";
+
 export default function General(props) {
 	return (
 		<form id="general">
@@ -75,6 +77,7 @@ export default function General(props) {
 				rowsMax={4}
 				inputProps={{ "aria-label": "description" }}
 			/>
+      <Button color="primary" type="submit" className="float-right" variant="contained">Save</Button>
 		</form>
 	);
 }
