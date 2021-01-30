@@ -6,13 +6,21 @@ import EducationForm from "./EducationForm";
 import "../../styles/education.css";
 
 export default class Education extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editForm: false
-    }
-  }
-  
+	constructor(props) {
+		super(props);
+		this.state = {
+			editForm: false,
+		};
+		this.handleEducationChange = this.handleEducationChange.bind(this);
+	}
+
+	handleEducationChange(event) {
+		this.setState({
+			editForm: !this.state.editForm,
+		});
+		event.target.disabled = this.state.editForm;
+	}
+
 	render() {
 		return (
 			<div className="cv-sections">
@@ -23,7 +31,12 @@ export default class Education extends React.Component {
 				<div className="justify-center">
 					<EducationForm />
 				</div>
-				<Button color="primary" className="float-right" variant="contained">
+				<Button
+					color="primary"
+					className="float-right"
+					variant="contained"
+					onClick={this.handleEducationChange}
+				>
 					Add Education
 				</Button>
 			</div>
