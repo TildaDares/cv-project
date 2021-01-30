@@ -25,12 +25,35 @@ body {
 }
 
 .cv-sections {
-  padding-bottom: 50px;
+  padding-bottom: 10px;
+}
+
+.cv-forms {
+  width: 100%;
+}
+
+.cv-forms input {
+  
+}
+
+.MuiFormControl-root {
+  width: 100%;
+  margin-bottom: 10px !important;
+  margin-top: 10px !important;
+}
+
+.dates {
+  column-gap: 30px;
+}
+
+.submit {
+  margin-top: 30px !important;
+  float: right;
 }
 
 .dividers {
   margin-left: 0 !important;
-  margin-bottom: 30px !important;
+  margin-bottom: 5px !important;
 }
 
 .float-right {
