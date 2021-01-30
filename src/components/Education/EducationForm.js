@@ -8,7 +8,7 @@ export default function EducationForm() {
 			<TextField label="Field of Study" type="text" required />
 			<div className="d-flex dates">
 				<TextField label="Start Date" type="month" required />
-				<TextField label="End Date" type="month" required />
+				<TextField label="End Date" type="month" helperText="Or expected graduation" required />
 			</div>
 			<Button variant="contained" color="secondary" className="submit" type="submit">
 				Submit

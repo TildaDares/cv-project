@@ -6,7 +6,7 @@ import "../../styles/education.css";
 
 export default function Education(props) {
 	return (
-		<div class="cv-sections">
+		<div className="cv-sections">
 			<Typography variant="h3" className="heading">
 				Education
 			</Typography>
