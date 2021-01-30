@@ -11,6 +11,9 @@ body {
 .d-flex {
   display: flex;
 }
+.justify-between {
+  justify-content: space-between;
+}
 
 .justify-center {
   display: flex;
@@ -22,6 +25,7 @@ body {
   margin-top: 80px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-bottom: 70px;
 }
 
 .cv-sections {
@@ -30,10 +34,6 @@ body {
 
 .cv-forms {
   width: 100%;
-}
-
-.cv-forms input {
-  
 }
 
 .MuiFormControl-root {

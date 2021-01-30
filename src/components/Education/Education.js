@@ -18,7 +18,6 @@ export default class Education extends React.Component {
 		this.setState({
 			editForm: !this.state.editForm,
 		});
-		event.target.disabled = this.state.editForm;
 	}
 
 	render() {
@@ -29,13 +28,15 @@ export default class Education extends React.Component {
 				</Typography>
 				<Divider variant="middle" className="dividers" />
 				<div className="justify-center">
-					<EducationForm />
+					{this.state.editForm && (
+						<EducationForm handleEducationChange={this.handleEducationChange} />
+					)}
 				</div>
 				<Button
 					color="primary"
-					className="float-right"
-					variant="contained"
+					className="float-right add-edu"
 					onClick={this.handleEducationChange}
+					disabled={this.state.editForm}
 				>
 					Add Education
 				</Button>
