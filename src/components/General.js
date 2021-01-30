@@ -1,34 +1,38 @@
 import InputBase from "@material-ui/core/InputBase";
-import InputAdornment from '@material-ui/core/InputAdornment';
+import InputAdornment from "@material-ui/core/InputAdornment";
 import PhoneIcon from "@material-ui/icons/Phone";
-import EmailIcon from '@material-ui/icons/Email';
+import EmailIcon from "@material-ui/icons/Email";
 import HomeIcon from "@material-ui/icons/Home";
-import Button from "@material-ui/core/Button";
 import "../styles/general.css";
 
 export default function General(props) {
+	function handleFocusOnReadOnly() {
+		if (props.readOnly) {
+			return "";
+		}
+		return "general-input";
+	}
+
 	return (
-		<form id="general">
+		<div id="general">
 			<InputBase
 				className="name heading"
 				id="standard-multiline-flexible"
 				placeholder="Jane Doe"
-				required
 				readOnly={props.readOnly}
 				multiline
 				rowsMax={4}
 				inputProps={{ "aria-label": "name" }}
 			/>
 			<InputBase
-				className="profession profession-mb heading general-input"
+				className={`profession profession-mb heading ${handleFocusOnReadOnly()}`}
 				placeholder="Profession"
-				required
 				readOnly={props.readOnly}
 				inputProps={{ "aria-label": "profession" }}
 			/>
 			<div className="d-flex">
 				<InputBase
-					className="address-font-size form-inputs general-input"
+					className={`address-font-size form-inputs ${handleFocusOnReadOnly()}`}
 					placeholder="Fake address"
 					readOnly={props.readOnly}
 					inputProps={{ "aria-label": "address" }}
@@ -42,7 +46,7 @@ export default function General(props) {
 			</div>
 			<div className="d-flex">
 				<InputBase
-					className="telephone-font-size form-inputs general-input"
+					className={`telephone-font-size form-inputs ${handleFocusOnReadOnly()}`}
 					placeholder="0890483883838"
 					readOnly={props.readOnly}
 					inputProps={{ "aria-label": "telephone" }}
@@ -56,9 +60,8 @@ export default function General(props) {
 			</div>
 			<div className="d-flex">
 				<InputBase
-					className="email-font-size form-inputs general-input"
+					className={`email-font-size form-inputs ${handleFocusOnReadOnly()}`}
 					placeholder="youremail@gmail.com"
-					required
 					readOnly={props.readOnly}
 					inputProps={{ "aria-label": "email" }}
 					type="email"
@@ -77,7 +80,6 @@ export default function General(props) {
 				rowsMax={4}
 				inputProps={{ "aria-label": "description" }}
 			/>
-      <Button color="primary" type="submit" className="float-right" variant="contained">Save</Button>
-		</form>
+		</div>
 	);
 }

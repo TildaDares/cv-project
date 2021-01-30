@@ -1,6 +1,6 @@
 import Paper from "@material-ui/core/Paper";
 import General from "./General";
-import Education from "./Education"
+import Education from "./Education/Education"
 import "../styles/main.css";
 function Resume(props) {
 	return (

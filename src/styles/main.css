@@ -12,8 +12,27 @@ body {
   display: flex;
 }
 
+.justify-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .paper {
   margin-top: 80px;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.cv-sections {
+  padding-bottom: 50px;
+}
+
+.dividers {
+  margin-left: 0 !important;
+  margin-bottom: 30px !important;
+}
+
+.float-right {
+  float: right;
 }
