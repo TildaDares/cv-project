@@ -15,21 +15,8 @@
   margin-bottom: 10px;
 }
 
-.form {
-  margin-left: 15px;
-  margin-right: 15px;
-}
-
-.paper {
-  margin-top: 80px;
-}
-
 .form-inputs {
   width: 100%;
-}
-
-.input-margin {
-  margin-right: 10px !important;
 }
 
 .description {
@@ -37,4 +24,8 @@
   margin-top: 10px;
   margin-bottom: 10px;
   width: 100%;
+}
+
+.general-input input:focus {
+  border-bottom: 1px solid green !important;
 }
