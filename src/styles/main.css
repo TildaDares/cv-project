@@ -46,9 +46,8 @@ body {
   column-gap: 30px;
 }
 
-.submit {
+.footer-btns {
   margin-top: 30px !important;
-  float: right;
 }
 
 .dividers {
