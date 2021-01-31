@@ -5,11 +5,11 @@ export default class EducationForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			school: "",
-			degree: "",
-			study: "",
-			startDate: "",
-			endDate: "",
+			school: this.props.education.school,
+			degree: this.props.education.degree,
+			study: this.props.education.study,
+			startDate: this.props.education.startDate,
+			endDate: this.props.education.endDate,
 			startDateHelperText: "",
 			startDateError: false,
 		};

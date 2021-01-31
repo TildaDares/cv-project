@@ -48,7 +48,10 @@ export default class Education extends React.Component {
 					<RenderEducation education={this.educationInfo} />
 					<RenderEducation education={this.educationInfo} />
 					{this.state.isNewForm && (
-						<EducationForm handleEducationChange={this.handleEducationChange} />
+						<EducationForm
+							handleEducationChange={this.handleEducationChange}
+							education={this.educationInfo}
+						/>
 					)}
 				</div>
 				{this.handleEducationButton() && (
