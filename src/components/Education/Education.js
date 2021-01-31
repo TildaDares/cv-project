@@ -9,15 +9,23 @@ export default class Education extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			editForm: false,
+			newForm: false,
 		};
 		this.handleEducationChange = this.handleEducationChange.bind(this);
+		this.handleEducationButton = this.handleEducationButton.bind(this);
 	}
 
 	handleEducationChange(event) {
 		this.setState({
-			editForm: !this.state.editForm,
+			newForm: !this.state.newForm,
 		});
+	}
+
+	handleEducationButton() {
+		if (this.state.newForm || this.props.readOnly) {
+			return false;
+		}
+		return true;
 	}
 
 	render() {
@@ -28,18 +36,20 @@ export default class Education extends React.Component {
 				</Typography>
 				<Divider variant="middle" className="dividers" />
 				<div className="justify-center">
-					{this.state.editForm && (
+					{this.state.newForm && (
 						<EducationForm handleEducationChange={this.handleEducationChange} />
 					)}
 				</div>
-				<Button
-					color="primary"
-					className="float-right add-edu"
-					onClick={this.handleEducationChange}
-					disabled={this.state.editForm}
-				>
-					Add Education
-				</Button>
+				{this.handleEducationButton() && (
+					<Button
+						color="primary"
+						className="float-right add-edu"
+						onClick={this.handleEducationChange}
+						disabled={this.state.newForm}
+					>
+						Add Education
+					</Button>
+				)}
 			</div>
 		);
 	}
