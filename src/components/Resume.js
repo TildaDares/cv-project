@@ -5,8 +5,8 @@ import "../styles/main.css";
 function Resume(props) {
 	return (
 		<Paper elevation={3} className="paper">
-      <General readOnly={props.readOnly} />
-      <Education readOnly={props.readOnly}/>
+      <General isReadOnly={props.isReadOnly} />
+      <Education isReadOnly={props.isReadOnly}/>
 		</Paper>
 	);
 }

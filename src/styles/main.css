@@ -15,17 +15,20 @@ body {
   justify-content: space-between;
 }
 
-.justify-center {
+.cv-section {
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  row-gap: 20px;
+  flex-direction: column;
 }
 
 .paper {
   margin-top: 80px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-bottom: 70px;
+  padding-bottom: 50px;
 }
 
 .cv-sections {
@@ -57,4 +60,16 @@ body {
 
 .float-right {
   float: right;
+}
+
+.add-btn {
+  margin-top: 20px !important;
+}
+
+.subtitle1 {
+  font-size: 1.2rem;
+}
+
+.subtitle2 {
+  font-size: 1.1rem;
 }

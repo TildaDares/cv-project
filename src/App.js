@@ -7,14 +7,14 @@ class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			readOnly: false,
+			isReadOnly: false,
 		};
 		this.handleReadOnlyChange = this.handleReadOnlyChange.bind(this);
 	}
 
 	handleReadOnlyChange(event) {
 		this.setState({
-			readOnly: event.target.checked,
+			isReadOnly: event.target.checked,
 		});
 	}
 
@@ -22,7 +22,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<NavBar handleChange={this.handleReadOnlyChange} />
-				<Resume readOnly={this.state.readOnly} />
+				<Resume isReadOnly={this.state.isReadOnly} />
 			</div>
 		);
 	}

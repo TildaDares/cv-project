@@ -7,7 +7,7 @@ import "../styles/general.css";
 
 export default function General(props) {
 	function handleFocusOnReadOnly() {
-		if (props.readOnly) {
+		if (props.isReadOnly) {
 			return "";
 		}
 		return "general-input";
@@ -19,7 +19,7 @@ export default function General(props) {
 				className="name heading"
 				id="standard-multiline-flexible"
 				placeholder="Jane Doe"
-				readOnly={props.readOnly}
+				readOnly={props.isReadOnly}
 				multiline
 				rowsMax={4}
 				inputProps={{ "aria-label": "name" }}
@@ -27,14 +27,14 @@ export default function General(props) {
 			<InputBase
 				className={`profession profession-mb heading ${handleFocusOnReadOnly()}`}
 				placeholder="Profession"
-				readOnly={props.readOnly}
+				readOnly={props.isReadOnly}
 				inputProps={{ "aria-label": "profession" }}
 			/>
 			<div className="d-flex">
 				<InputBase
 					className={`address-font-size form-inputs ${handleFocusOnReadOnly()}`}
 					placeholder="Fake address"
-					readOnly={props.readOnly}
+					readOnly={props.isReadOnly}
 					inputProps={{ "aria-label": "address" }}
 					type="text"
 					startAdornment={
@@ -48,7 +48,7 @@ export default function General(props) {
 				<InputBase
 					className={`telephone-font-size form-inputs ${handleFocusOnReadOnly()}`}
 					placeholder="0890483883838"
-					readOnly={props.readOnly}
+					readOnly={props.isReadOnly}
 					inputProps={{ "aria-label": "telephone" }}
 					type="tel"
 					startAdornment={
@@ -62,7 +62,7 @@ export default function General(props) {
 				<InputBase
 					className={`email-font-size form-inputs ${handleFocusOnReadOnly()}`}
 					placeholder="youremail@gmail.com"
-					readOnly={props.readOnly}
+					readOnly={props.isReadOnly}
 					inputProps={{ "aria-label": "email" }}
 					type="email"
 					startAdornment={
@@ -75,7 +75,7 @@ export default function General(props) {
 			<InputBase
 				className="description"
 				placeholder="Tell me about yourself"
-				readOnly={props.readOnly}
+				readOnly={props.isReadOnly}
 				multiline
 				rowsMax={4}
 				inputProps={{ "aria-label": "description" }}
