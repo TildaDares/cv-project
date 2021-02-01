@@ -17,12 +17,31 @@ export default class Education extends React.Component {
 		this.handleEducationChange = this.handleEducationChange.bind(this);
 		this.handleEducationButton = this.handleEducationButton.bind(this);
 		this.addNewEducation = this.addNewEducation.bind(this);
+    this.editEducation = this.editEducation.bind(this);
+    this.closeForm = this.closeForm.bind(this)
 	}
 
 	addNewEducation(newEdu) {
 		this.setState({
 			educationArr: this.state.educationArr.concat(newEdu),
+		});
+	}
+
+  closeForm() {
+    this.setState({
 			isNewForm: !this.state.isNewForm,
+		});
+  }
+
+	editEducation(editedEdu) {
+		const updatedArr = this.state.educationArr.map((edu) => {
+			if (edu.id === editedEdu.id) {
+				edu = editedEdu;
+			}
+			return edu;
+		});
+		this.setState({
+			educationArr: updatedArr,
 		});
 	}
 
@@ -33,19 +52,14 @@ export default class Education extends React.Component {
 	}
 
 	handleEducationButton() {
-		if (this.state.isNewForm || this.props.isReadOnly) {
+		if (
+			this.state.isNewForm ||
+			this.props.isReadOnly
+		) {
 			return false;
 		}
 		return true;
 	}
-
-	educationInfo = {
-		school: "",
-		study: "",
-		degree: "",
-		startDate: "",
-		endDate: "",
-	};
 
 	render() {
 		return (
@@ -63,15 +77,18 @@ export default class Education extends React.Component {
 								degree={edu.degree}
 								startDate={edu.startDate}
 								endDate={edu.endDate}
-								key={edu.key}
+                handleEdit={this.handleEdit}
+                id={edu.id}
+                key={edu.id}
+                editEducation={this.editEducation}
 							/>
 						))}
 					</div>
 					{this.state.isNewForm && (
 						<EducationForm
 							handleEducationChange={this.handleEducationChange}
-							education={this.educationInfo}
-							addNewEducation={this.addNewEducation}
+              addEducation={this.addNewEducation}
+              closeForm={this.closeForm}
 						/>
 					)}
 				</div>

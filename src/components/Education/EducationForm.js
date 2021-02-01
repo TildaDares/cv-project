@@ -6,11 +6,11 @@ export default class EducationForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			school: this.props.education.school,
-			degree: this.props.education.degree,
-			study: this.props.education.study,
-			startDate: this.props.education.startDate,
-			endDate: this.props.education.endDate,
+			school: this.props.school,
+			degree: this.props.degree,
+			study: this.props.study,
+			startDate: this.props.startDate,
+			endDate: this.props.endDate,
 			startDateHelperText: "",
 			startDateError: false,
 		};
@@ -22,14 +22,16 @@ export default class EducationForm extends React.Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		if (this.handleErrors()) {
-			this.props.addNewEducation({
+			this.props.addEducation({
 				school: this.state.school,
 				degree: this.state.degree,
 				study: this.state.study,
 				endDate: this.state.endDate,
 				startDate: this.state.startDate,
-				key: uniqid(),
-			});
+				id: this.props.id || uniqid(),
+				isEditable: false,
+      });
+      this.props.closeForm();
 		}
 	}
 
@@ -68,6 +70,7 @@ export default class EducationForm extends React.Component {
 					label="School"
 					name="school"
 					type="text"
+					value={this.state.school}
 					onChange={this.handleChange}
 					required
 				/>
@@ -75,6 +78,7 @@ export default class EducationForm extends React.Component {
 					label="Degree"
 					name="degree"
 					type="text"
+					value={this.state.degree}
 					onChange={this.handleChange}
 					required
 				/>
@@ -82,6 +86,7 @@ export default class EducationForm extends React.Component {
 					label="Field of Study"
 					name="study"
 					type="text"
+					value={this.state.study}
 					onChange={this.handleChange}
 					required
 				/>
@@ -91,6 +96,7 @@ export default class EducationForm extends React.Component {
 						label="Start Date"
 						name="startDate"
 						type="month"
+						value={this.state.startDate}
 						helperText={this.state.startDateHelperText}
 						onChange={this.handleChange}
 						required
@@ -99,6 +105,7 @@ export default class EducationForm extends React.Component {
 						label="End Date"
 						type="month"
 						name="endDate"
+						value={this.state.endDate}
 						helperText="Or expected graduation"
 						onChange={this.handleChange}
 						required
@@ -121,3 +128,12 @@ export default class EducationForm extends React.Component {
 		);
 	}
 }
+
+EducationForm.defaultProps = {
+	school: "",
+	study: "",
+	degree: "",
+	startDate: "",
+	endDate: "",
+	id: "",
+};
