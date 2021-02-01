@@ -18,10 +18,10 @@ body {
 .cv-section {
   margin-top: 20px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  row-gap: 20px;
   flex-direction: column;
+  
 }
 
 .paper {
@@ -37,6 +37,7 @@ body {
 
 .cv-forms {
   width: 100%;
+  max-width: 400px;
 }
 
 .MuiFormControl-root {
@@ -72,4 +73,17 @@ body {
 
 .subtitle2 {
   font-size: 1.1rem;
+}
+.container {
+  max-width: 400px;
+  display:flex;
+  justify-content: flex-start;
+  row-gap: 20px;
+  flex-direction: column;
+}
+.icon-btn {
+  padding-left: 19px !important;
+  padding-bottom: 0 !important;
+  width: 20px !important;
+  height: 10px !important;
 }

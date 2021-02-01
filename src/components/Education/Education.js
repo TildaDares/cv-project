@@ -55,16 +55,18 @@ export default class Education extends React.Component {
 				</Typography>
 				<Divider variant="middle" className="dividers" />
 				<div className="cv-section">
-					{this.state.educationArr.map((edu) => (
-						<RenderEducation
-							school={edu.school}
-							study={edu.study}
-							degree={edu.degree}
-							startDate={edu.startDate}
-							endDate={edu.endDate}
-							key={edu.key}
-						/>
-					))}
+					<div className="container">
+						{this.state.educationArr.map((edu) => (
+							<RenderEducation
+								school={edu.school}
+								study={edu.study}
+								degree={edu.degree}
+								startDate={edu.startDate}
+								endDate={edu.endDate}
+								key={edu.key}
+							/>
+						))}
+					</div>
 					{this.state.isNewForm && (
 						<EducationForm
 							handleEducationChange={this.handleEducationChange}
