@@ -2,6 +2,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add";
 import EducationForm from "./EducationForm";
 import RenderEducation from "./RenderEducation";
 import "../../styles/education.css";
@@ -54,14 +55,14 @@ export default class Education extends React.Component {
 				</Typography>
 				<Divider variant="middle" className="dividers" />
 				<div className="cv-section">
-					{this.state.educationArr.map((edu, index) => (
+					{this.state.educationArr.map((edu) => (
 						<RenderEducation
 							school={edu.school}
 							study={edu.study}
 							degree={edu.degree}
 							startDate={edu.startDate}
 							endDate={edu.endDate}
-							key={index}
+							key={edu.key}
 						/>
 					))}
 					{this.state.isNewForm && (
@@ -76,6 +77,7 @@ export default class Education extends React.Component {
 					<Button
 						color="primary"
 						className="float-right add-btn"
+						startIcon={<AddIcon />}
 						onClick={this.handleEducationChange}
 					>
 						Add Education

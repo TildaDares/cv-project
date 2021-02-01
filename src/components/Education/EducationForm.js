@@ -1,6 +1,7 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import uniqid from "uniqid";
 export default class EducationForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -14,22 +15,23 @@ export default class EducationForm extends React.Component {
 			startDateError: false,
 		};
 		this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleErrors = this.handleErrors.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleErrors = this.handleErrors.bind(this);
 	}
 
 	handleSubmit(event) {
-    event.preventDefault();
-    if(this.handleErrors()) {
-      this.props.addNewEducation({
-        school: this.state.school,
-        degree: this.state.degree,
-        study: this.state.study,
-        endDate: this.state.endDate,
-        startDate: this.state.startDate,
-      })
-    }
-  }
+		event.preventDefault();
+		if (this.handleErrors()) {
+			this.props.addNewEducation({
+				school: this.state.school,
+				degree: this.state.degree,
+				study: this.state.study,
+				endDate: this.state.endDate,
+				startDate: this.state.startDate,
+				key: uniqid(),
+			});
+		}
+	}
 
 	handleErrors() {
 		const fields = ["school", "degree", "study", "startDate", "endDate"];
@@ -85,11 +87,11 @@ export default class EducationForm extends React.Component {
 				/>
 				<div className="d-flex dates">
 					<TextField
-            error={this.state.startDateError}
+						error={this.state.startDateError}
 						label="Start Date"
 						name="startDate"
-            type="month"
-            helperText={this.state.startDateHelperText}
+						type="month"
+						helperText={this.state.startDateHelperText}
 						onChange={this.handleChange}
 						required
 					/>
@@ -111,11 +113,7 @@ export default class EducationForm extends React.Component {
 					>
 						Cancel
 					</Button>
-					<Button
-						variant="contained"
-						color="primary"
-						type="submit"
-					>
+					<Button variant="contained" color="primary" type="submit">
 						Submit
 					</Button>
 				</div>
