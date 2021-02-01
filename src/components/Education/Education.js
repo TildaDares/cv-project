@@ -11,9 +11,18 @@ export default class Education extends React.Component {
 		super(props);
 		this.state = {
 			isNewForm: false,
+			educationArr: [],
 		};
 		this.handleEducationChange = this.handleEducationChange.bind(this);
 		this.handleEducationButton = this.handleEducationButton.bind(this);
+		this.addNewEducation = this.addNewEducation.bind(this);
+	}
+
+	addNewEducation(newEdu) {
+		this.setState({
+			educationArr: this.state.educationArr.concat(newEdu),
+			isNewForm: !this.state.isNewForm,
+		});
 	}
 
 	handleEducationChange(event) {
@@ -30,11 +39,11 @@ export default class Education extends React.Component {
 	}
 
 	educationInfo = {
-		school: "University of Boston",
-		study: "Computer Science",
-		degree: "Bachelor of Science",
-		startDate: "January 2012",
-		endDate: "June 2012",
+		school: "",
+		study: "",
+		degree: "",
+		startDate: "",
+		endDate: "",
 	};
 
 	render() {
@@ -45,12 +54,21 @@ export default class Education extends React.Component {
 				</Typography>
 				<Divider variant="middle" className="dividers" />
 				<div className="cv-section">
-					<RenderEducation education={this.educationInfo} />
-					<RenderEducation education={this.educationInfo} />
+					{this.state.educationArr.map((edu, index) => (
+						<RenderEducation
+							school={edu.school}
+							study={edu.study}
+							degree={edu.degree}
+							startDate={edu.startDate}
+							endDate={edu.endDate}
+							key={index}
+						/>
+					))}
 					{this.state.isNewForm && (
 						<EducationForm
 							handleEducationChange={this.handleEducationChange}
 							education={this.educationInfo}
+							addNewEducation={this.addNewEducation}
 						/>
 					)}
 				</div>
@@ -59,7 +77,6 @@ export default class Education extends React.Component {
 						color="primary"
 						className="float-right add-btn"
 						onClick={this.handleEducationChange}
-						disabled={this.state.isNewForm}
 					>
 						Add Education
 					</Button>

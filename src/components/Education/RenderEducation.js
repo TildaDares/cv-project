@@ -3,13 +3,11 @@ export default function RenderEducation(props) {
 	return (
 		<div>
 			<Typography className="subtitle1">
-				{props.education.degree}: {props.education.study}
+				{props.degree}: {props.study}
 			</Typography>
-			<Typography className="heading subtitle2">
-				{props.education.school}
-			</Typography>
+			<Typography className="heading subtitle2">{props.school}</Typography>
 			<Typography>
-				{props.education.startDate} - {props.education.endDate}
+				{props.startDate} - {props.endDate}
 			</Typography>
 		</div>
 	);

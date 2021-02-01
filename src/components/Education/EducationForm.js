@@ -20,8 +20,14 @@ export default class EducationForm extends React.Component {
 
 	handleSubmit(event) {
     event.preventDefault();
-    if(!this.handleErrors()) {
-      console.log("Errors are about");
+    if(this.handleErrors()) {
+      this.props.addNewEducation({
+        school: this.state.school,
+        degree: this.state.degree,
+        study: this.state.study,
+        endDate: this.state.endDate,
+        startDate: this.state.startDate,
+      })
     }
   }
 
