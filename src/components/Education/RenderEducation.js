@@ -31,7 +31,8 @@ export default class RenderEducation extends React.Component {
 					<IconButton
 						aria-label="delete"
 						color="secondary"
-						className="float-right pb-0"
+            className="float-right pb-0"
+            onClick={this.handleDelete}
 					>
 						<DeleteIcon />
 					</IconButton>
