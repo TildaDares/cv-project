@@ -3,35 +3,50 @@ import Typography from "@material-ui/core/Typography";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import EducationForm from "./EducationForm";
+import DeleteIcon from "@material-ui/icons/Delete";
 export default class RenderEducation extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			isEditable: false,
 		};
-		this.handleEdit = this.handleEdit.bind(this);
+		this.handleForm = this.handleForm.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 	}
 
-	handleEdit() {
+	handleForm() {
 		this.setState({
 			isEditable: !this.state.isEditable,
 		});
 	}
 
+	handleDelete() {
+		this.props.deleteEducation(this.props.id);
+	}
+
 	displayEdu() {
-		if (this.state.isEditable) {
+		if (this.state.isEditable && !this.props.isReadOnly) {
 			return (
-				<EducationForm
-					handleEducationChange={this.handleEdit}
-					addEducation={this.props.editEducation}
-					id={this.props.id}
-					school={this.props.school}
-					study={this.props.study}
-					degree={this.props.degree}
-					startDate={this.props.startDate}
-					endDate={this.props.endDate}
-					closeForm={this.handleEdit}
-				/>
+				<div>
+					<IconButton
+						aria-label="delete"
+						color="secondary"
+						className="float-right pb-0"
+					>
+						<DeleteIcon />
+					</IconButton>
+					<EducationForm
+						addEducation={this.props.editEducation}
+						id={this.props.id}
+						school={this.props.school}
+						study={this.props.study}
+						degree={this.props.degree}
+						startDate={this.props.startDate}
+						endDate={this.props.endDate}
+						closeForm={this.handleForm}
+						isReadOnly={this.props.isReadOnly}
+					/>
+				</div>
 			);
 		}
 		return (
@@ -47,14 +62,16 @@ export default class RenderEducation extends React.Component {
 						{this.props.startDate} - {this.props.endDate}
 					</Typography>
 				</div>
-				<IconButton
-					aria-label="edit"
-					className="icon-btn"
-					onClick={this.handleEdit}
-					id={this.props.id}
-				>
-					<EditIcon />
-				</IconButton>
+				{!this.props.isReadOnly && (
+					<IconButton
+						aria-label="edit"
+						className="icon-btn"
+						onClick={this.handleForm}
+						id={this.props.id}
+					>
+						<EditIcon />
+					</IconButton>
+				)}
 			</div>
 		);
 	}

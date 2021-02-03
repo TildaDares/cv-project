@@ -14,12 +14,18 @@ export default class Education extends React.Component {
 			isNewForm: false,
 			educationArr: [],
 		};
-		this.handleEducationChange = this.handleEducationChange.bind(this);
 		this.handleEducationButton = this.handleEducationButton.bind(this);
 		this.addNewEducation = this.addNewEducation.bind(this);
     this.editEducation = this.editEducation.bind(this);
-    this.closeForm = this.closeForm.bind(this)
+    this.handleForm = this.handleForm.bind(this);
+    this.deleteEducation = this.deleteEducation.bind(this);
 	}
+
+  deleteEducation(id){
+    this.setState({
+			educationArr: this.state.educationArr.filter((edu) => edu.id !== id),
+		});
+  }
 
 	addNewEducation(newEdu) {
 		this.setState({
@@ -27,7 +33,7 @@ export default class Education extends React.Component {
 		});
 	}
 
-  closeForm() {
+  handleForm() {
     this.setState({
 			isNewForm: !this.state.isNewForm,
 		});
@@ -42,12 +48,6 @@ export default class Education extends React.Component {
 		});
 		this.setState({
 			educationArr: updatedArr,
-		});
-	}
-
-	handleEducationChange(event) {
-		this.setState({
-			isNewForm: !this.state.isNewForm,
 		});
 	}
 
@@ -77,18 +77,20 @@ export default class Education extends React.Component {
 								degree={edu.degree}
 								startDate={edu.startDate}
 								endDate={edu.endDate}
-                handleEdit={this.handleEdit}
-                id={edu.id}
-                key={edu.id}
-                editEducation={this.editEducation}
+								handleEdit={this.handleEdit}
+								deleteEducation={this.deleteEducation}
+								id={edu.id}
+								key={edu.id}
+								editEducation={this.editEducation}
+								isReadOnly={this.props.isReadOnly}
 							/>
 						))}
 					</div>
 					{this.state.isNewForm && (
 						<EducationForm
-							handleEducationChange={this.handleEducationChange}
-              addEducation={this.addNewEducation}
-              closeForm={this.closeForm}
+							addEducation={this.addNewEducation}
+							closeForm={this.handleForm}
+							isReadOnly={this.props.isReadOnly}
 						/>
 					)}
 				</div>
@@ -97,7 +99,7 @@ export default class Education extends React.Component {
 						color="primary"
 						className="float-right add-btn"
 						startIcon={<AddIcon />}
-						onClick={this.handleEducationChange}
+						onClick={this.handleForm}
 					>
 						Add Education
 					</Button>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Chivo&display=swap');
 body {
   font-family: 'Chivo', sans-serif !important;
@@ -86,4 +86,8 @@ body {
   padding-bottom: 0 !important;
   width: 20px !important;
   height: 10px !important;
+}
+
+.pb-0 {
+  padding-bottom: 0 !important;
 }
