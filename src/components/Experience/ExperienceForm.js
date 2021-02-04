@@ -1,32 +1,38 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
 export default class ExperienceForm extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
+	constructor(props) {
+		super(props);
+		this.state = {
 			company: this.props.school,
 			position: this.props.degree,
 			description: this.props.study,
 			startDate: this.props.startDate,
+			disabled: false,
 			endDate: this.props.endDate,
 			startDateHelperText: "",
 			startDateError: false,
-    };
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
+		};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleSwitch = this.handleSwitch.bind(this);
+	}
 
-  handleChange(){
+	handleChange() {}
 
-  }
+	handleSubmit() {}
 
-  handleSubmit() {
+	handleSwitch(event) {
+		this.setState({
+			disabled: event.target.checked,
+		});
+	}
 
-  }
-
-  render(){
-    return (
+	render() {
+		return (
 			<form className="cv-forms" onSubmit={this.handleSubmit}>
 				<TextField
 					label="Company"
@@ -69,12 +75,23 @@ export default class ExperienceForm extends React.Component {
 						type="month"
 						name="endDate"
 						value={this.state.endDate}
-						helperText="Or expected graduation"
+						disabled={this.state.disabled}
 						onChange={this.handleChange}
 						required
 					/>
 				</div>
-				<div className="d-flex justify-between footer-btns">
+				<FormControlLabel
+					control={
+						<Switch
+							onChange={this.handleSwitch}
+							name="ongoing"
+							color="primary"
+						/>
+					}
+					label="Ongoing"
+					className="float-right"
+				/>
+				<div className="d-flex justify-between" id="experience-btns">
 					<Button
 						variant="contained"
 						color="secondary"
@@ -89,5 +106,5 @@ export default class ExperienceForm extends React.Component {
 				</div>
 			</form>
 		);
-  }
+	}
 }
