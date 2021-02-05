@@ -23,7 +23,11 @@ export default class Experience extends React.Component {
 		});
 	}
 
-	addNewExperience() {}
+	addNewExperience(newEdu) {
+    this.setState({
+			experienceArr: this.state.experienceArr.concat(newEdu),
+		});
+  }
 
 	handleEducationButton() {
 		if (this.state.isNewForm || this.props.isReadOnly) {
