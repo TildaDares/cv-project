@@ -13,8 +13,15 @@ export default class Experience extends React.Component {
 		};
 		this.handleForm = this.handleForm.bind(this);
 		this.addNewExperience = this.addNewExperience.bind(this);
-		this.handleExperienceButton = this.handleExperienceButton.bind(this);
+    this.handleExperienceButton = this.handleExperienceButton.bind(this);
+    this.deleteExperience = this.deleteExperience.bind(this);
 	}
+
+  deleteExperience(id){
+    this.setState({
+			experienceArrr: this.state.experienceArr.filter((exp) => exp.id !== id),
+		});
+  }
 
 	handleForm() {
 		this.setState({
@@ -22,9 +29,9 @@ export default class Experience extends React.Component {
 		});
 	}
 
-	addNewExperience(newEdu) {
+	addNewExperience(newExp) {
 		this.setState({
-			experienceArr: this.state.experienceArr.concat(newEdu),
+			experienceArr: this.state.experienceArr.concat(newExp),
 		});
 	}
 
