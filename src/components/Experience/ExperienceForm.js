@@ -20,73 +20,12 @@ export default class ExperienceForm extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleSwitch = this.handleSwitch.bind(this);
-		this.handleErrors = this.handleErrors.bind(this);
+    this.handleErrors = this.handleErrors.bind(this);
+    this.displayForm = this.displayForm.bind(this);
 	}
 
-	handleChange(event) {
-		this.setState({
-			[event.target.name]: event.target.value,
-		});
-	}
-
-	handleSubmit(event) {
-		event.preventDefault();
-		if (this.handleErrors()) {
-			this.props.addExperience({
-				company: this.state.company,
-				position: this.state.position,
-				description: this.state.description,
-				endDate: this.state.endDate,
-				startDate: this.state.startDate,
-				id: this.props.id || uniqid(),
-				isEditable: false,
-			});
-			this.props.closeForm();
-			if (this.state.disabled) {
-				this.setState({
-					endDate: "Present",
-					disabled: false,
-				});
-			}
-		}
-	}
-
-	handleSwitch(event) {
-		this.setState({
-			disabled: event.target.checked,
-		});
-	}
-
-	handleErrors() {
-		const fields = [
-			"company",
-			"position",
-			"description",
-			"startDate",
-			"endDate",
-		];
-		fields.forEach((field) => {
-			if (this.state[field] === "") {
-				return false;
-			}
-		});
-		if (this.state.startDate > this.state.endDate) {
-			this.setState({
-				startDateHelperText: "Start date cannot be lesser",
-				startDateError: true,
-			});
-			return false;
-		} else {
-			this.setState({
-				startDateHelperText: "",
-				startDateError: false,
-			});
-		}
-		return true;
-	}
-
-	render() {
-		return (
+  displayForm(){
+    return (
 			<form className="cv-forms" onSubmit={this.handleSubmit}>
 				<TextField
 					label="Company"
@@ -160,6 +99,72 @@ export default class ExperienceForm extends React.Component {
 				</div>
 			</form>
 		);
+  }
+
+	handleChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value,
+		});
+	}
+
+	handleSubmit(event) {
+		event.preventDefault();
+		if (this.handleErrors()) {
+			this.props.addExperience({
+				company: this.state.company,
+				position: this.state.position,
+				description: this.state.description,
+				endDate: this.state.endDate,
+				startDate: this.state.startDate,
+				id: this.props.id || uniqid(),
+				isEditable: false,
+			});
+			this.props.closeForm();
+			if (this.state.disabled) {
+				this.setState({
+					endDate: "Present",
+					disabled: false,
+				});
+			}
+		}
+	}
+
+	handleSwitch(event) {
+		this.setState({
+			disabled: event.target.checked,
+		});
+	}
+
+	handleErrors() {
+		const fields = [
+			"company",
+			"position",
+			"description",
+			"startDate",
+			"endDate",
+		];
+		fields.forEach((field) => {
+			if (this.state[field] === "") {
+				return false;
+			}
+		});
+		if (this.state.startDate > this.state.endDate) {
+			this.setState({
+				startDateHelperText: "Start date cannot be lesser",
+				startDateError: true,
+			});
+			return false;
+		} else {
+			this.setState({
+				startDateHelperText: "",
+				startDateError: false,
+			});
+		}
+		return true;
+	}
+
+	render() {
+		
 	}
 }
 
