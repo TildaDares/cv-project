@@ -18,7 +18,8 @@ export default class ExperienceForm extends React.Component {
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleSwitch = this.handleSwitch.bind(this);
+    this.handleSwitch = this.handleSwitch.bind(this);
+    this.handleErrors = this.handleErrors.bind(this);
 	}
 
 	handleChange(event) {
@@ -41,6 +42,28 @@ export default class ExperienceForm extends React.Component {
 		});
 	}
 
+  handleErrors() {
+		const fields = ["company", "position", "description", "startDate", "endDate"];
+		fields.forEach((field) => {
+			if (this.state[field] === "") {
+				return false;
+			}
+		});
+		if (this.state.startDate > this.state.endDate) {
+			this.setState({
+				startDateHelperText: "Start date cannot be lesser",
+				startDateError: true,
+			});
+			return false;
+		} else {
+			this.setState({
+				startDateHelperText: "",
+				startDateError: false,
+			});
+		}
+		return true;
+  }
+  
 	render() {
 		return (
 			<form className="cv-forms" onSubmit={this.handleSubmit}>
