@@ -53,13 +53,13 @@ export default class RenderEducation extends React.Component {
 		return (
 			<div className="d-flex">
 				<div>
-					<Typography className="subtitle1">
+					<Typography className="subtitle1 info-text">
 						{this.props.degree}: {this.props.study}
 					</Typography>
-					<Typography className="heading subtitle2">
+					<Typography className="heading subtitle2 info-text">
 						{this.props.school}
 					</Typography>
-					<Typography>
+					<Typography className="info-text">
 						{this.props.startDate} - {this.props.endDate}
 					</Typography>
 				</div>

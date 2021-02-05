@@ -96,3 +96,7 @@ body {
 .pb-0 {
   padding-bottom: 0 !important;
 }
+
+.info-text {
+  word-break: break-word;
+}

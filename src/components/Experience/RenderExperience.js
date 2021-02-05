@@ -53,14 +53,14 @@ export default class RenderExperience extends React.Component {
 		return (
 			<div className="d-flex">
 				<div>
-					<Typography className="subtitle1">{this.props.position}</Typography>
-					<Typography className="heading subtitle2">
+					<Typography className="subtitle1 info-text">{this.props.position}</Typography>
+					<Typography className="heading subtitle2 info-text">
 						{this.props.company}
 					</Typography>
 					<Typography>
 						{this.props.startDate} - {this.props.endDate}
 					</Typography>
-					<Typography>{this.props.description}</Typography>
+					<Typography className="info-text">{this.props.description}</Typography>
 				</div>
 				{!this.props.isReadOnly && (
 					<IconButton
