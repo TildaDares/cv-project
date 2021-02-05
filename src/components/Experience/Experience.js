@@ -14,7 +14,7 @@ export default class Experience extends React.Component {
 		};
 		this.handleForm = this.handleForm.bind(this);
 		this.addNewExperience = this.addNewExperience.bind(this);
-		this.handleEducationButton = this.handleEducationButton.bind(this);
+		this.handleExperienceButton = this.handleExperienceButton.bind(this);
 	}
 
 	handleForm() {
@@ -24,12 +24,12 @@ export default class Experience extends React.Component {
 	}
 
 	addNewExperience(newEdu) {
-    this.setState({
+		this.setState({
 			experienceArr: this.state.experienceArr.concat(newEdu),
 		});
-  }
+	}
 
-	handleEducationButton() {
+	handleExperienceButton() {
 		if (this.state.isNewForm || this.props.isReadOnly) {
 			return false;
 		}
@@ -53,7 +53,7 @@ export default class Experience extends React.Component {
 						/>
 					)}
 				</div>
-				{this.handleEducationButton() && (
+				{this.handleExperienceButton() && (
 					<Button
 						color="primary"
 						className="float-right add-btn"
