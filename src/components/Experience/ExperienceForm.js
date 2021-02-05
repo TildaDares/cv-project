@@ -21,9 +21,19 @@ export default class ExperienceForm extends React.Component {
 		this.handleSwitch = this.handleSwitch.bind(this);
 	}
 
-	handleChange() {}
+	handleChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value,
+		});
+	}
 
-	handleSubmit() {}
+	handleSubmit() {
+		if (this.state.disabled) {
+			this.setState({
+				endDate: "Present",
+			});
+		}
+	}
 
 	handleSwitch(event) {
 		this.setState({
@@ -44,7 +54,7 @@ export default class ExperienceForm extends React.Component {
 				/>
 				<TextField
 					label="Position"
-					name="positipn"
+					name="position"
 					type="text"
 					value={this.state.position}
 					onChange={this.handleChange}
@@ -108,3 +118,12 @@ export default class ExperienceForm extends React.Component {
 		);
 	}
 }
+
+ExperienceForm.defaultProps = {
+	school: "",
+	study: "",
+	degree: "",
+	startDate: "",
+	endDate: "",
+	id: "",
+};
