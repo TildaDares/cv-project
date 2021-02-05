@@ -20,12 +20,12 @@ export default class ExperienceForm extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleSwitch = this.handleSwitch.bind(this);
-    this.handleErrors = this.handleErrors.bind(this);
-    this.displayForm = this.displayForm.bind(this);
+		this.handleErrors = this.handleErrors.bind(this);
+		this.displayForm = this.displayForm.bind(this);
 	}
 
-  displayForm(){
-    return (
+	displayForm() {
+		return (
 			<form className="cv-forms" onSubmit={this.handleSubmit}>
 				<TextField
 					label="Company"
@@ -50,7 +50,6 @@ export default class ExperienceForm extends React.Component {
 					rows={4}
 					value={this.state.description}
 					onChange={this.handleChange}
-					required
 				/>
 				<div className="d-flex dates">
 					<TextField
@@ -99,7 +98,7 @@ export default class ExperienceForm extends React.Component {
 				</div>
 			</form>
 		);
-  }
+	}
 
 	handleChange(event) {
 		this.setState({
@@ -136,13 +135,7 @@ export default class ExperienceForm extends React.Component {
 	}
 
 	handleErrors() {
-		const fields = [
-			"company",
-			"position",
-			"description",
-			"startDate",
-			"endDate",
-		];
+		const fields = ["company", "position", "startDate", "endDate"];
 		fields.forEach((field) => {
 			if (this.state[field] === "") {
 				return false;
