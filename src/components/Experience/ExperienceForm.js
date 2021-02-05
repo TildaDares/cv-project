@@ -172,9 +172,9 @@ export default class ExperienceForm extends React.Component {
 }
 
 ExperienceForm.defaultProps = {
-	school: "",
-	study: "",
-	degree: "",
+	company: "",
+	description: "",
+	position: "",
 	startDate: "",
 	endDate: "",
 	id: "",
