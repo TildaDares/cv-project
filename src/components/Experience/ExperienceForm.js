@@ -7,9 +7,9 @@ export default class ExperienceForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			company: this.props.school,
-			position: this.props.degree,
-			description: this.props.study,
+			company: this.props.company,
+			position: this.props.position,
+			description: this.props.description,
 			startDate: this.props.startDate,
 			disabled: false,
 			endDate: this.props.endDate,
