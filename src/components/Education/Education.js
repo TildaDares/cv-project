@@ -5,7 +5,6 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import EducationForm from "./EducationForm";
 import RenderEducation from "./RenderEducation";
-import "../../styles/education.css";
 
 export default class Education extends React.Component {
 	constructor(props) {

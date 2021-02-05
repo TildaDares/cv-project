@@ -4,7 +4,6 @@ import AddIcon from "@material-ui/icons/Add";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import ExperienceForm from "./ExperienceForm";
-import "../../styles/education.css";
 export default class Experience extends React.Component {
 	constructor(props) {
 		super(props);
