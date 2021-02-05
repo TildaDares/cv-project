@@ -16,7 +16,9 @@ export default class RenderExperience extends React.Component {
 
 	handleForm() {}
 
-	handleDelete() {}
+	handleDelete() {
+    this.props.deleteExperience(this.props.id);
+  }
 
 	displayExp() {
 		if (this.state.isEditable && !this.props.isReadOnly) {
