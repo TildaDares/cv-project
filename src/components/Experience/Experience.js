@@ -4,6 +4,7 @@ import AddIcon from "@material-ui/icons/Add";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import ExperienceForm from "./ExperienceForm";
+import RenderExperience from "./RenderExperience";
 export default class Experience extends React.Component {
 	constructor(props) {
 		super(props);
@@ -63,7 +64,23 @@ export default class Experience extends React.Component {
 				</Typography>
 				<Divider variant="middle" className="dividers" />
 				<div className="cv-section">
-					<div className="container"></div>
+					<div className="container">
+						{this.state.experienceArr.map((exp) => (
+							<RenderExperience
+								company={exp.company}
+								position={exp.position}
+								description={exp.description}
+								startDate={exp.startDate}
+								endDate={exp.endDate}
+								handleEdit={this.handleEdit}
+								deleteExperience={this.deleteExperience}
+								id={exp.id}
+								key={exp.id}
+								editExperience={this.editExperience}
+								isReadOnly={this.props.isReadOnly}
+							/>
+						))}
+					</div>
 					{this.state.isNewForm && (
 						<ExperienceForm
 							addExperience={this.addNewExperience}
