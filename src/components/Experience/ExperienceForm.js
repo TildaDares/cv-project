@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
+import uniqid from "uniqid";
 export default class ExperienceForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,8 +19,8 @@ export default class ExperienceForm extends React.Component {
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSwitch = this.handleSwitch.bind(this);
-    this.handleErrors = this.handleErrors.bind(this);
+		this.handleSwitch = this.handleSwitch.bind(this);
+		this.handleErrors = this.handleErrors.bind(this);
 	}
 
 	handleChange(event) {
@@ -28,11 +29,25 @@ export default class ExperienceForm extends React.Component {
 		});
 	}
 
-	handleSubmit() {
-		if (this.state.disabled) {
-			this.setState({
-				endDate: "Present",
+	handleSubmit(event) {
+		event.preventDefault();
+		if (this.handleErrors()) {
+			this.props.addExperience({
+				company: this.state.company,
+				position: this.state.position,
+				description: this.state.description,
+				endDate: this.state.endDate,
+				startDate: this.state.startDate,
+				id: this.props.id || uniqid(),
+				isEditable: false,
 			});
+			this.props.closeForm();
+			if (this.state.disabled) {
+				this.setState({
+					endDate: "Present",
+					disabled: false,
+				});
+			}
 		}
 	}
 
@@ -42,8 +57,14 @@ export default class ExperienceForm extends React.Component {
 		});
 	}
 
-  handleErrors() {
-		const fields = ["company", "position", "description", "startDate", "endDate"];
+	handleErrors() {
+		const fields = [
+			"company",
+			"position",
+			"description",
+			"startDate",
+			"endDate",
+		];
 		fields.forEach((field) => {
 			if (this.state[field] === "") {
 				return false;
@@ -62,8 +83,8 @@ export default class ExperienceForm extends React.Component {
 			});
 		}
 		return true;
-  }
-  
+	}
+
 	render() {
 		return (
 			<form className="cv-forms" onSubmit={this.handleSubmit}>
