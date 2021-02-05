@@ -164,7 +164,10 @@ export default class ExperienceForm extends React.Component {
 	}
 
 	render() {
-		
+		if (!this.props.isReadOnly) {
+			return this.displayForm();
+		}
+		return <div></div>;
 	}
 }
 
