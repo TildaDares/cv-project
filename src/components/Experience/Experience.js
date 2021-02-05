@@ -13,19 +13,32 @@ export default class Experience extends React.Component {
 		};
 		this.handleForm = this.handleForm.bind(this);
 		this.addNewExperience = this.addNewExperience.bind(this);
-    this.handleExperienceButton = this.handleExperienceButton.bind(this);
-    this.deleteExperience = this.deleteExperience.bind(this);
+		this.handleExperienceButton = this.handleExperienceButton.bind(this);
+		this.deleteExperience = this.deleteExperience.bind(this);
+		this.editExperience = this.editExperience.bind(this);
 	}
 
-  deleteExperience(id){
-    this.setState({
-			experienceArrr: this.state.experienceArr.filter((exp) => exp.id !== id),
+	deleteExperience(id) {
+		this.setState({
+			experienceArr: this.state.experienceArr.filter((exp) => exp.id !== id),
 		});
-  }
+	}
 
 	handleForm() {
 		this.setState({
 			isNewForm: !this.state.isNewForm,
+		});
+	}
+
+	editExperience(editedExp) {
+		const updatedArr = this.state.experienceArr.map((exp) => {
+			if (exp.id === editedExp.id) {
+				exp = editedExp;
+			}
+			return exp;
+		});
+		this.setState({
+			experienceArr: updatedArr,
 		});
 	}
 
