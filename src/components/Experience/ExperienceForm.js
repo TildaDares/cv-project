@@ -22,6 +22,7 @@ export default class ExperienceForm extends React.Component {
 		this.handleSwitch = this.handleSwitch.bind(this);
 		this.handleErrors = this.handleErrors.bind(this);
 		this.displayForm = this.displayForm.bind(this);
+		this.isDisabled = this.isDisabled.bind(this);
 	}
 
 	displayForm() {
@@ -106,6 +107,10 @@ export default class ExperienceForm extends React.Component {
 		});
 	}
 
+	isDisabled() {
+		return this.state.disabled ? "Present" : this.state.endDate;
+	}
+
 	handleSubmit(event) {
 		event.preventDefault();
 		if (this.handleErrors()) {
@@ -113,18 +118,12 @@ export default class ExperienceForm extends React.Component {
 				company: this.state.company,
 				position: this.state.position,
 				description: this.state.description,
-				endDate: this.state.endDate,
+				endDate: this.isDisabled(),
 				startDate: this.state.startDate,
 				id: this.props.id || uniqid(),
 				isEditable: false,
 			});
 			this.props.closeForm();
-			if (this.state.disabled) {
-				this.setState({
-					endDate: "Present",
-					disabled: false,
-				});
-			}
 		}
 	}
 
@@ -141,6 +140,11 @@ export default class ExperienceForm extends React.Component {
 				return false;
 			}
 		});
+
+		if (this.state.disabled) {
+			return true;
+		}
+
 		if (this.state.startDate > this.state.endDate) {
 			this.setState({
 				startDateHelperText: "Start date cannot be lesser",
@@ -153,6 +157,7 @@ export default class ExperienceForm extends React.Component {
 				startDateError: false,
 			});
 		}
+
 		return true;
 	}
 
