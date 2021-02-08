@@ -4,16 +4,38 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import uniqid from "uniqid";
 export default class Skills extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			skillsArr: [],
+			skill: "",
 		};
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
 	handleFocusOnReadOnly() {
 		return this.props.isReadOnly ? "" : "focus-input";
+	}
+
+	handleSubmit(event) {
+		event.preventDefault();
+		if (this.state.skill) {
+			this.setState({
+				skillsArr: this.state.skillsArr.concat({
+					value: this.state.skill,
+					id: uniqid(),
+				}),
+			});
+		}
+	}
+
+	handleChange(event) {
+		this.setState({
+			skill: event.target.value,
+		});
 	}
 
 	render() {
@@ -27,7 +49,7 @@ export default class Skills extends React.Component {
 					<div className="container">
 						<ul>
 							{this.state.skillsArr.map((skill) => (
-								<li>
+								<li key={skill.id}>
 									<InputBase
 										className={`${this.handleFocusOnReadOnly()}`}
 										value={skill.value}
@@ -39,8 +61,15 @@ export default class Skills extends React.Component {
 						</ul>
 					</div>
 					{!this.props.isReadOnly && (
-						<form>
-							<TextField label="Skill" name="skill" type="text" required />
+						<form onSubmit={this.handleSubmit}>
+							<TextField
+								label="Skill"
+								name="skill"
+								type="text"
+								onChange={this.handleChange}
+								value={this.state.skill}
+								required
+							/>
 							<Button variant="contained" color="primary" type="submit">
 								Submit
 							</Button>
