@@ -74,14 +74,16 @@ export default class Skills extends React.Component {
 											inputProps={{ "aria-label": "skill" }}
 											onBlur={this.handleEdit}
 										/>
-										{!this.props.isReadOnly &&<IconButton
-											aria-label="delete"
-											color="secondary"
-											className=""
-											onClick={this.handleDelete}
-										>
-											<DeleteIcon />
-										</IconButton>
+										{!this.props.isReadOnly && (
+											<IconButton
+												aria-label="delete"
+												color="secondary"
+												className=""
+												onClick={this.handleDelete}
+											>
+												<DeleteIcon />
+											</IconButton>
+										)}
 									</div>
 								</li>
 							))}
@@ -103,3 +105,7 @@ export default class Skills extends React.Component {
 						</form>
 					)}
 				</div>
+			</div>
+		);
+	}
+}
