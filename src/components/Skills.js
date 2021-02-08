@@ -17,10 +17,18 @@ export default class Skills extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleEdit = this.handleEdit.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 	}
 
 	handleFocusOnReadOnly() {
 		return this.props.isReadOnly ? "" : "focus-input";
+	}
+
+	handleDelete(event) {
+		const id = event.currentTarget.dataset.remove;
+		this.setState({
+			skillsArr: this.state.skillsArr.filter((skill) => skill.id !== id),
+		});
 	}
 
 	handleSubmit(event) {
@@ -43,10 +51,10 @@ export default class Skills extends React.Component {
 	}
 
 	handleEdit(event) {
-		const index = event.target.parentNode.id;
+		const id = event.target.parentNode.id;
 		this.setState({
 			skillsArr: this.state.skillsArr.map((skill) => {
-				if (skill.id === index) {
+				if (skill.id === id) {
 					skill.value = event.target.value;
 				}
 				return skill;
@@ -78,8 +86,8 @@ export default class Skills extends React.Component {
 											<IconButton
 												aria-label="delete"
 												color="secondary"
-												className=""
 												onClick={this.handleDelete}
+												data-remove={skill.id}
 											>
 												<DeleteIcon />
 											</IconButton>
