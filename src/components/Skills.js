@@ -16,6 +16,7 @@ export default class Skills extends React.Component {
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.handleEdit = this.handleEdit.bind(this);
 	}
 
 	handleFocusOnReadOnly() {
@@ -30,6 +31,7 @@ export default class Skills extends React.Component {
 					value: this.state.skill,
 					id: uniqid(),
 				}),
+				skill: "",
 			});
 		}
 	}
@@ -37,6 +39,18 @@ export default class Skills extends React.Component {
 	handleChange(event) {
 		this.setState({
 			skill: event.target.value,
+		});
+	}
+
+	handleEdit(event) {
+		const index = event.target.parentNode.id;
+		this.setState({
+			skillsArr: this.state.skillsArr.map((skill) => {
+				if (skill.id === index) {
+					skill.value = event.target.value;
+				}
+				return skill;
+			}),
 		});
 	}
 
@@ -52,14 +66,15 @@ export default class Skills extends React.Component {
 						<ul>
 							{this.state.skillsArr.map((skill) => (
 								<li key={skill.id}>
-									<div className="d-flex">
+									<div className="d-flex" id={skill.id}>
 										<InputBase
 											className={`${this.handleFocusOnReadOnly()}`}
-											value={skill.value}
+											defaultValue={skill.value}
 											readOnly={this.props.isReadOnly}
 											inputProps={{ "aria-label": "skill" }}
+											onBlur={this.handleEdit}
 										/>
-										<IconButton
+										{!this.props.isReadOnly &&<IconButton
 											aria-label="delete"
 											color="secondary"
 											className=""
@@ -88,7 +103,3 @@ export default class Skills extends React.Component {
 						</form>
 					)}
 				</div>
-			</div>
-		);
-	}
-}
