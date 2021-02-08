@@ -7,10 +7,7 @@ import "../styles/general.css";
 
 export default function General(props) {
 	function handleFocusOnReadOnly() {
-		if (props.isReadOnly) {
-			return "";
-		}
-		return "general-input";
+		return props.isReadOnly ? "" : "focus-input";
 	}
 
 	return (

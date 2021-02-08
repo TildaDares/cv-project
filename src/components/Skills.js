@@ -1,4 +1,5 @@
 import React from "react";
+import InputBase from "@material-ui/core/InputBase";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
@@ -11,6 +12,10 @@ export default class Skills extends React.Component {
 		};
 	}
 
+	handleFocusOnReadOnly() {
+		return this.props.isReadOnly ? "" : "focus-input";
+	}
+
 	render() {
 		return (
 			<div className="cv-sections">
@@ -19,18 +24,28 @@ export default class Skills extends React.Component {
 				</Typography>
 				<Divider variant="middle" className="dividers" />
 				<div className="cv-section">
-					<div className="container"></div>
-					<form>
-						<TextField
-							label="Skill"
-							name="skill"
-							type="text"
-							required
-						/>
-						<Button variant="contained" color="primary" type="submit">
-							Submit
-						</Button>
-					</form>
+					<div className="container">
+						<ul>
+							{this.state.skillsArr.map((skill) => (
+								<li>
+									<InputBase
+										className={`${this.handleFocusOnReadOnly()}`}
+										value={skill.value}
+										readOnly={this.props.isReadOnly}
+										inputProps={{ "aria-label": "skill" }}
+									/>
+								</li>
+							))}
+						</ul>
+					</div>
+					{!this.props.isReadOnly && (
+						<form>
+							<TextField label="Skill" name="skill" type="text" required />
+							<Button variant="contained" color="primary" type="submit">
+								Submit
+							</Button>
+						</form>
+					)}
 				</div>
 			</div>
 		);

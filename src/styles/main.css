@@ -100,3 +100,7 @@ body {
 .info-text {
   word-break: break-word;
 }
+
+.focus-input input:focus {
+  border-bottom: 1px solid rgba(63, 81, 181, 1) !important;
+}

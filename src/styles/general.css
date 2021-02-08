@@ -26,9 +26,6 @@
   width: 100%;
 }
 
-.general-input input:focus {
-  border-bottom: 1px solid rgba(63, 81, 181, 1) !important;
-}
 .float-right {
   float: right;
 }
