@@ -4,6 +4,8 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import DeleteIcon from "@material-ui/icons/Delete";
+import IconButton from "@material-ui/core/IconButton";
 import uniqid from "uniqid";
 export default class Skills extends React.Component {
 	constructor(props) {
@@ -50,12 +52,22 @@ export default class Skills extends React.Component {
 						<ul>
 							{this.state.skillsArr.map((skill) => (
 								<li key={skill.id}>
-									<InputBase
-										className={`${this.handleFocusOnReadOnly()}`}
-										value={skill.value}
-										readOnly={this.props.isReadOnly}
-										inputProps={{ "aria-label": "skill" }}
-									/>
+									<div className="d-flex">
+										<InputBase
+											className={`${this.handleFocusOnReadOnly()}`}
+											value={skill.value}
+											readOnly={this.props.isReadOnly}
+											inputProps={{ "aria-label": "skill" }}
+										/>
+										<IconButton
+											aria-label="delete"
+											color="secondary"
+											className=""
+											onClick={this.handleDelete}
+										>
+											<DeleteIcon />
+										</IconButton>
+									</div>
 								</li>
 							))}
 						</ul>
