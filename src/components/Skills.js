@@ -76,7 +76,7 @@ export default class Skills extends React.Component {
 								<li key={skill.id}>
 									<div className="d-flex" id={skill.id}>
 										<InputBase
-											className={`${this.handleFocusOnReadOnly()}`}
+											className={`${this.handleFocusOnReadOnly()} skill-font-size`}
 											defaultValue={skill.value}
 											readOnly={this.props.isReadOnly}
 											inputProps={{ "aria-label": "skill" }}

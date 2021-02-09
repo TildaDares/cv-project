@@ -20,7 +20,7 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="main-container">
 				<NavBar handleChange={this.handleReadOnlyChange} />
 				<Resume isReadOnly={this.state.isReadOnly} />
 			</div>

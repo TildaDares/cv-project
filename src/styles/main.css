@@ -24,7 +24,15 @@ body {
   
 }
 
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .paper {
+  max-width: 800px;
   margin-top: 80px;
   padding-left: 15px;
   padding-right: 15px;
@@ -73,19 +81,20 @@ body {
 }
 
 .subtitle1 {
-  font-size: 1.2rem;
+  font-size: 1.4rem !important;
 }
 
 .subtitle2 {
-  font-size: 1.1rem;
+  font-size: 1.3rem !important;
 }
+
 .container {
-  max-width: 400px;
   display:flex;
   justify-content: flex-start;
   row-gap: 20px;
   flex-direction: column;
 }
+
 .icon-btn {
   padding-left: 19px !important;
   padding-bottom: 0 !important;
@@ -103,4 +112,12 @@ body {
 
 .focus-input input:focus {
   border-bottom: 1px solid rgba(63, 81, 181, 1) !important;
+}
+
+.skill-font-size, ul li {
+  font-size: 1.3rem !important; 
+}
+
+.body-1 {
+  font-size: 1.1rem !important;
 }

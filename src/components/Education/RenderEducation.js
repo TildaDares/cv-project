@@ -59,7 +59,7 @@ export default class RenderEducation extends React.Component {
 					<Typography className="heading subtitle2 info-text">
 						{this.props.school}
 					</Typography>
-					<Typography className="info-text">
+					<Typography className="info-text body-1">
 						{this.props.startDate} - {this.props.endDate}
 					</Typography>
 				</div>

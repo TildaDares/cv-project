@@ -5,10 +5,13 @@
 
 .name {
   font-size: 3rem !important;
+  width: 100%;
+  height: auto !important;
 }
 
 .profession {
   font-size: 1.6rem !important;
+  width: 100%;
 }
 
 .profession-mb {
@@ -17,6 +20,7 @@
 
 .form-inputs {
   width: 100%;
+  font-size: 1.2rem !important;
 }
 
 .description {

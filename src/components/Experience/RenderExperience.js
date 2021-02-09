@@ -57,10 +57,10 @@ export default class RenderExperience extends React.Component {
 					<Typography className="heading subtitle2 info-text">
 						{this.props.company}
 					</Typography>
-					<Typography>
+					<Typography className="body-1">
 						{this.props.startDate} - {this.props.endDate}
 					</Typography>
-					<Typography className="info-text">{this.props.description}</Typography>
+					<Typography className="info-text body-1">{this.props.description}</Typography>
 				</div>
 				{!this.props.isReadOnly && (
 					<IconButton
