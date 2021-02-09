@@ -121,3 +121,9 @@ body {
 .body-1 {
   font-size: 1.1rem !important;
 }
+
+@media(min-width: 400px){
+  .cv-forms {
+    max-width: 400px;
+  }
+}
