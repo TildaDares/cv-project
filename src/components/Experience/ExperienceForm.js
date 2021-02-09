@@ -8,7 +8,7 @@ export default class ExperienceForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			company: this.props.company,
+			organisation: this.props.organisation,
 			position: this.props.position,
 			description: this.props.description,
 			startDate: this.props.startDate,
@@ -29,10 +29,10 @@ export default class ExperienceForm extends React.Component {
 		return (
 			<form className="cv-forms" onSubmit={this.handleSubmit}>
 				<TextField
-					label="Company"
-					name="company"
+					label="Organisation"
+					name="organisation"
 					type="text"
-					value={this.state.company}
+					value={this.state.organisation}
 					onChange={this.handleChange}
 					required
 				/>
@@ -115,7 +115,7 @@ export default class ExperienceForm extends React.Component {
 		event.preventDefault();
 		if (this.handleErrors()) {
 			this.props.addExperience({
-				company: this.state.company,
+				organisation: this.state.organisation,
 				position: this.state.position,
 				description: this.state.description,
 				endDate: this.isDisabled(),
@@ -134,7 +134,7 @@ export default class ExperienceForm extends React.Component {
 	}
 
 	handleErrors() {
-		const fields = ["company", "position", "startDate", "endDate"];
+		const fields = ["organisation", "position", "startDate", "endDate"];
 		fields.forEach((field) => {
 			if (this.state[field] === "") {
 				return false;
@@ -170,7 +170,7 @@ export default class ExperienceForm extends React.Component {
 }
 
 ExperienceForm.defaultProps = {
-	company: "",
+	organisation: "",
 	description: "",
 	position: "",
 	startDate: "",

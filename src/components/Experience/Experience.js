@@ -67,7 +67,7 @@ export default class Experience extends React.Component {
 					<div className="container">
 						{this.state.experienceArr.map((exp) => (
 							<RenderExperience
-								company={exp.company}
+								organisation={exp.organisation}
 								position={exp.position}
 								description={exp.description}
 								startDate={exp.startDate}

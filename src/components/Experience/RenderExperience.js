@@ -39,7 +39,7 @@ export default class RenderExperience extends React.Component {
 					<ExperienceForm
 						addExperience={this.props.editExperience}
 						id={this.props.id}
-						company={this.props.company}
+						organisation={this.props.organisation}
 						position={this.props.position}
 						description={this.props.description}
 						startDate={this.props.startDate}
@@ -55,7 +55,7 @@ export default class RenderExperience extends React.Component {
 				<div>
 					<Typography className="subtitle1 info-text">{this.props.position}</Typography>
 					<Typography className="heading subtitle2 info-text">
-						{this.props.company}
+						{this.props.organisation}
 					</Typography>
 					<Typography className="body-1">
 						{this.props.startDate} - {this.props.endDate}
