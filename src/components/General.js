@@ -18,7 +18,6 @@ export default function General(props) {
 				placeholder="Jane Doe"
 				readOnly={props.isReadOnly}
 				multiline
-				rowsMax={4}
 				inputProps={{ "aria-label": "name" }}
 			/>
 			<InputBase
