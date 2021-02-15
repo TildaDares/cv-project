@@ -73,7 +73,6 @@ export default function General(props) {
 				placeholder="Tell me about yourself"
 				readOnly={props.isReadOnly}
 				multiline
-				rowsMax={4}
 				inputProps={{ "aria-label": "description" }}
 			/>
 		</div>
