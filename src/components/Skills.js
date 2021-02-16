@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import InputBase from "@material-ui/core/InputBase";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -7,113 +7,94 @@ import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import uniqid from "uniqid";
-export default class Skills extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			skillsArr: [],
-			skill: "",
-		};
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleChange = this.handleChange.bind(this);
-		this.handleEdit = this.handleEdit.bind(this);
-		this.handleDelete = this.handleDelete.bind(this);
+export default function Skills(props) {
+	const [skillsArr, setSkillsArr] = useState([]);
+	const [skill, setSkill] = useState("");
+
+	function handleFocusOnReadOnly() {
+		return props.isReadOnly ? "" : "focus-input";
 	}
 
-	handleFocusOnReadOnly() {
-		return this.props.isReadOnly ? "" : "focus-input";
-	}
-
-	handleDelete(event) {
+	function handleDelete(event) {
 		const id = event.currentTarget.dataset.remove;
-		this.setState({
-			skillsArr: this.state.skillsArr.filter((skill) => skill.id !== id),
-		});
+		setSkillsArr(skillsArr.filter((elem) => elem.id !== id));
 	}
 
-	handleSubmit(event) {
+	function handleSubmit(event) {
 		event.preventDefault();
-		if (this.state.skill) {
-			this.setState({
-				skillsArr: this.state.skillsArr.concat({
-					value: this.state.skill,
+		if (skill) {
+			setSkillsArr(
+				skillsArr.concat({
+					value: skill,
 					id: uniqid(),
-				}),
-				skill: "",
-			});
+				})
+			);
+			setSkill("");
 		}
 	}
 
-	handleChange(event) {
-		this.setState({
-			skill: event.target.value,
-		});
-	}
-
-	handleEdit(event) {
+	function handleEdit(event) {
 		const id = event.target.parentNode.id;
-		this.setState({
-			skillsArr: this.state.skillsArr.map((skill) => {
-				if (skill.id === id) {
-					skill.value = event.target.value;
+		setSkillsArr(
+			skillsArr.map((elem) => {
+				if (elem.id === id) {
+					elem.value = event.target.value;
 				}
-				return skill;
-			}),
-		});
-	}
-
-	render() {
-		return (
-			<div className="cv-sections">
-				<Typography variant="h3" className="heading">
-					Skills
-				</Typography>
-				<Divider variant="middle" className="dividers" />
-				<div className="cv-section">
-					<div className="container">
-						<ul>
-							{this.state.skillsArr.map((skill) => (
-								<li key={skill.id}>
-									<div className="d-flex" id={skill.id}>
-										<InputBase
-											className={`${this.handleFocusOnReadOnly()} skill-font-size`}
-											defaultValue={skill.value}
-											readOnly={this.props.isReadOnly}
-											inputProps={{ "aria-label": "skill" }}
-											onBlur={this.handleEdit}
-										/>
-										{!this.props.isReadOnly && (
-											<IconButton
-												aria-label="delete"
-												color="secondary"
-												onClick={this.handleDelete}
-												data-remove={skill.id}
-											>
-												<DeleteIcon />
-											</IconButton>
-										)}
-									</div>
-								</li>
-							))}
-						</ul>
-					</div>
-					{!this.props.isReadOnly && (
-						<form onSubmit={this.handleSubmit}>
-							<TextField
-								label="Skill"
-								name="skill"
-								type="text"
-								onChange={this.handleChange}
-								value={this.state.skill}
-								required
-							/>
-							<Button variant="contained" color="primary" type="submit">
-								Submit
-							</Button>
-						</form>
-					)}
-				</div>
-			</div>
+				return elem;
+			})
 		);
 	}
+
+	return (
+		<div className="cv-sections">
+			<Typography variant="h3" className="heading">
+				Skills
+			</Typography>
+			<Divider variant="middle" className="dividers" />
+			<div className="cv-section">
+				<div className="container">
+					<ul>
+						{skillsArr.map((elem) => (
+							<li key={elem.id}>
+								<div className="d-flex" id={elem.id}>
+									<InputBase
+										className={`${handleFocusOnReadOnly()} skill-font-size`}
+										defaultValue={elem.value}
+										readOnly={props.isReadOnly}
+										inputProps={{ "aria-label": "skill" }}
+										onBlur={handleEdit}
+									/>
+									{!props.isReadOnly && (
+										<IconButton
+											aria-label="delete"
+											color="secondary"
+											onClick={handleDelete}
+											data-remove={elem.id}
+										>
+											<DeleteIcon />
+										</IconButton>
+									)}
+								</div>
+							</li>
+						))}
+					</ul>
+				</div>
+				{!props.isReadOnly && (
+					<form onSubmit={handleSubmit}>
+						<TextField
+							label="Skill"
+							name="skill"
+							type="text"
+							onChange={(event) => setSkill(event.target.value)}
+							value={skill}
+							required
+						/>
+						<Button variant="contained" color="primary" type="submit">
+							Submit
+						</Button>
+					</form>
+				)}
+			</div>
+		</div>
+	);
 }
