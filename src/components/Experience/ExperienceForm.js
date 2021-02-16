@@ -1,47 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import uniqid from "uniqid";
-export default class ExperienceForm extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			organisation: this.props.organisation,
-			position: this.props.position,
-			description: this.props.description,
-			startDate: this.props.startDate,
-			disabled: false,
-			endDate: this.props.endDate,
-			startDateHelperText: "",
-			startDateError: false,
-		};
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleSwitch = this.handleSwitch.bind(this);
-		this.handleErrors = this.handleErrors.bind(this);
-		this.displayForm = this.displayForm.bind(this);
-		this.isDisabled = this.isDisabled.bind(this);
-	}
+export default function ExperienceForm(props) {
+	const [organisation, setOrganisation] = useState(props.organisation || "");
+	const [position, setPosition] = useState(props.position || "");
+	const [description, setDescription] = useState(props.description || "");
+	const [startDate, setStartDate] = useState(props.startDate || "");
+	const [endDate, setEndDate] = useState(props.endDate || "");
+	const [startDateHelperText, setStartDateHelperText] = useState("");
+	const [startDateError, setStartDateError] = useState(false);
+	const [disabled, setDisabled] = useState(false);
 
-	displayForm() {
+	function displayForm() {
 		return (
-			<form className="cv-forms" onSubmit={this.handleSubmit}>
+			<form className="cv-forms" onSubmit={handleSubmit}>
 				<TextField
 					label="Organisation"
 					name="organisation"
 					type="text"
-					value={this.state.organisation}
-					onChange={this.handleChange}
+					value={organisation}
+					onChange={(event) => setOrganisation(event.target.value)}
 					required
 				/>
 				<TextField
 					label="Position"
 					name="position"
 					type="text"
-					value={this.state.position}
-					onChange={this.handleChange}
+					value={position}
+					onChange={(event) => setPosition(event.target.value)}
 					required
 				/>
 				<TextField
@@ -49,34 +38,34 @@ export default class ExperienceForm extends React.Component {
 					name="description"
 					multiline
 					rows={4}
-					value={this.state.description}
-					onChange={this.handleChange}
+					value={description}
+					onChange={(event) => setDescription(event.target.value)}
 				/>
 				<div className="d-flex dates">
 					<TextField
-						error={this.state.startDateError}
+						error={startDateError}
 						label="Start Date"
 						name="startDate"
 						type="month"
-						value={this.state.startDate}
-						helperText={this.state.startDateHelperText}
-						onChange={this.handleChange}
+						value={startDate}
+						helperText={startDateHelperText}
+						onChange={(event) => setStartDate(event.target.value)}
 						required
 					/>
 					<TextField
 						label="End Date"
 						type="month"
 						name="endDate"
-						value={this.state.endDate}
-						disabled={this.state.disabled}
-						onChange={this.handleChange}
+						value={endDate}
+						disabled={disabled}
+						onChange={(event) => setEndDate(event.target.value)}
 						required
 					/>
 				</div>
 				<FormControlLabel
 					control={
 						<Switch
-							onChange={this.handleSwitch}
+							onChange={(event) => setDisabled(event.target.checked)}
 							name="ongoing"
 							color="primary"
 						/>
@@ -89,7 +78,7 @@ export default class ExperienceForm extends React.Component {
 						variant="contained"
 						color="secondary"
 						type="button"
-						onClick={this.props.closeForm}
+						onClick={props.closeForm}
 					>
 						Cancel
 					</Button>
@@ -101,79 +90,47 @@ export default class ExperienceForm extends React.Component {
 		);
 	}
 
-	handleChange(event) {
-		this.setState({
-			[event.target.name]: event.target.value,
-		});
-	}
-
-	isDisabled() {
-		return this.state.disabled ? "Present" : this.state.endDate;
-	}
-
-	handleSubmit(event) {
+	function handleSubmit(event) {
 		event.preventDefault();
-		if (this.handleErrors()) {
-			this.props.addExperience({
-				organisation: this.state.organisation,
-				position: this.state.position,
-				description: this.state.description,
-				endDate: this.isDisabled(),
-				startDate: this.state.startDate,
-				id: this.props.id || uniqid(),
+		if (handleErrors()) {
+			props.addExperience({
+				organisation,
+				position,
+				description,
+				endDate: disabled ? "Present" : endDate,
+				startDate,
+				id: props.id || uniqid(),
 				isEditable: false,
 			});
-			this.props.closeForm();
+			props.closeForm();
 		}
 	}
 
-	handleSwitch(event) {
-		this.setState({
-			disabled: event.target.checked,
-		});
-	}
-
-	handleErrors() {
-		const fields = ["organisation", "position", "startDate", "endDate"];
+	function handleErrors() {
+		const fields = [organisation, position, startDate, endDate];
 		fields.forEach((field) => {
-			if (this.state[field] === "") {
+			if (field === "") {
 				return false;
 			}
 		});
 
-		if (this.state.disabled) {
+		if (disabled) {
 			return true;
 		}
 
-		if (this.state.startDate > this.state.endDate) {
-			this.setState({
-				startDateHelperText: "Start date cannot be lesser",
-				startDateError: true,
-			});
+		if (startDate > endDate) {
+			setStartDateHelperText("Start date cannot be lesser");
+			setStartDateError(true);
 			return false;
 		} else {
-			this.setState({
-				startDateHelperText: "",
-				startDateError: false,
-			});
+			setStartDateHelperText("");
+			setStartDateError(false);
 		}
-
 		return true;
 	}
 
-	render() {
-		if (!this.props.isReadOnly) {
-			return this.displayForm();
-		}
-		return <div></div>;
+	if (!props.isReadOnly) {
+		return displayForm();
 	}
+	return <div></div>;
 }
-
-ExperienceForm.defaultProps = {
-	organisation: "",
-	description: "",
-	position: "",
-	startDate: "",
-	endDate: "",
-	id: "",
-};
