@@ -1,86 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import uniqid from "uniqid";
-export default class EducationForm extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			school: this.props.school,
-			degree: this.props.degree,
-			study: this.props.study,
-			startDate: this.props.startDate,
-			endDate: this.props.endDate,
-			startDateHelperText: "",
-			startDateError: false,
-		};
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleErrors = this.handleErrors.bind(this);
-		this.displayForm = this.displayForm.bind(this);
-	}
+export default function EducationForm(props) {
+	const [school, setSchool] = useState(props.school || "");
+	const [degree, setDegree] = useState(props.degree || "");
+	const [study, setStudy] = useState(props.study || "");
+	const [startDate, setStartDate] = useState(props.startDate || "");
+	const [endDate, setEndDate] = useState(props.endDate || "");
+	const [startDateHelperText, setStartDateHelperText] = useState("");
+	const [startDateError, setStartDateError] = useState(false);
 
-	handleSubmit(event) {
+	function handleSubmit(event) {
 		event.preventDefault();
-		if (this.handleErrors()) {
-			this.props.addEducation({
-				school: this.state.school,
-				degree: this.state.degree,
-				study: this.state.study,
-				endDate: this.state.endDate,
-				startDate: this.state.startDate,
-				id: this.props.id || uniqid(),
+		if (handleErrors()) {
+			props.addEducation({
+				school: school,
+				degree: degree,
+				study: study,
+				endDate: endDate,
+				startDate: startDate,
+				id: props.id || uniqid(),
 				isEditable: false,
 			});
-			this.props.closeForm();
+			props.closeForm();
 		}
 	}
 
-	displayForm() {
+	function displayForm() {
 		return (
-			<form className="cv-forms" onSubmit={this.handleSubmit}>
+			<form className="cv-forms" onSubmit={handleSubmit}>
 				<TextField
 					label="School"
 					name="school"
 					type="text"
-					value={this.state.school}
-					onChange={this.handleChange}
+					value={school}
+					onChange={(event) => setSchool(event.target.value)}
 					required
 				/>
 				<TextField
 					label="Degree"
 					name="degree"
 					type="text"
-					value={this.state.degree}
-					onChange={this.handleChange}
+					value={degree}
+					onChange={(event) => setDegree(event.target.value)}
 					required
 				/>
 				<TextField
 					label="Field of Study"
 					name="study"
 					type="text"
-					value={this.state.study}
-					onChange={this.handleChange}
+					value={study}
+					onChange={(event) => setStudy(event.target.value)}
 					required
 				/>
 				<div className="d-flex dates">
 					<TextField
-						error={this.state.startDateError}
+						error={startDateError}
 						label="Start Date"
 						name="startDate"
 						type="month"
-						value={this.state.startDate}
-						helperText={this.state.startDateHelperText}
-						onChange={this.handleChange}
+						value={startDate}
+						helperText={startDateHelperText}
+						onChange={(event) => setStartDate(event.target.value)}
 						required
 					/>
 					<TextField
 						label="End Date"
 						type="month"
 						name="endDate"
-						value={this.state.endDate}
+						value={endDate}
 						helperText="Or expected graduation"
-						onChange={this.handleChange}
+						onChange={(event) => setEndDate(event.target.value)}
 						required
 					/>
 				</div>
@@ -89,7 +80,7 @@ export default class EducationForm extends React.Component {
 						variant="contained"
 						color="secondary"
 						type="button"
-						onClick={this.props.closeForm}
+						onClick={props.closeForm}
 					>
 						Cancel
 					</Button>
@@ -101,47 +92,26 @@ export default class EducationForm extends React.Component {
 		);
 	}
 
-	handleErrors() {
-		const fields = ["school", "degree", "study", "startDate", "endDate"];
+	function handleErrors() {
+		const fields = [school, degree, study, startDate, endDate];
 		fields.forEach((field) => {
-			if (this.state[field] === "") {
+			if (field === "") {
 				return false;
 			}
 		});
-		if (this.state.startDate > this.state.endDate) {
-			this.setState({
-				startDateHelperText: "Start date cannot be lesser",
-				startDateError: true,
-			});
+		if (startDate > endDate) {
+			setStartDateHelperText("Start date cannot be lesser");
+			setStartDateError(true);
 			return false;
 		} else {
-			this.setState({
-				startDateHelperText: "",
-				startDateError: false,
-			});
+			setStartDateHelperText("");
+			setStartDateError(false);
 		}
 		return true;
 	}
 
-	handleChange(event) {
-		this.setState({
-			[event.target.name]: event.target.value,
-		});
+	if (!props.isReadOnly) {
+		return displayForm();
 	}
-
-	render() {
-		if (!this.props.isReadOnly) {
-			return this.displayForm();
-		}
-		return <div></div>;
-	}
+	return <div></div>;
 }
-
-EducationForm.defaultProps = {
-	school: "",
-	study: "",
-	degree: "",
-	startDate: "",
-	endDate: "",
-	id: "",
-};

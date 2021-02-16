@@ -7,8 +7,8 @@ import EducationForm from "./EducationForm";
 import RenderEducation from "./RenderEducation";
 
 export default function Education(props) {
-	const [ isNewForm, setIsNewForm ] = useState(false);
-	const [ educationArr, setEducationArr ] = useState([]);
+	const [isNewForm, setIsNewForm] = useState(false);
+	const [educationArr, setEducationArr] = useState([]);
 
 	function deleteEducation(id) {
 		setEducationArr(educationArr.filter((edu) => edu.id !== id));
