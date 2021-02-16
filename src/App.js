@@ -1,31 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "./components/NavBar";
 import Resume from "./components/Resume";
 import "./styles/main.css";
 
-class App extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			isReadOnly: false,
-		};
-		this.handleReadOnlyChange = this.handleReadOnlyChange.bind(this);
-	}
+export default function App() {
+	const [isReadOnly, setIsReadOnly] = useState(false);
 
-	handleReadOnlyChange(event) {
-		this.setState({
-			isReadOnly: event.target.checked,
-		});
-	}
-
-	render() {
-		return (
-			<div className="main-container">
-				<NavBar handleChange={this.handleReadOnlyChange} />
-				<Resume isReadOnly={this.state.isReadOnly} />
-			</div>
-		);
-	}
+	return (
+		<div className="main-container">
+			<NavBar handleChange={(event) => setIsReadOnly(event.target.checked)} />
+			<Resume isReadOnly={isReadOnly} />
+		</div>
+	);
 }
-
-export default App;
