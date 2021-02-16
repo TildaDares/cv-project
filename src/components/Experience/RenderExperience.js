@@ -1,51 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import ExperienceForm from "./ExperienceForm";
 import DeleteIcon from "@material-ui/icons/Delete";
-export default class RenderExperience extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isEditable: false,
-		};
-		this.handleForm = this.handleForm.bind(this);
-		this.handleDelete = this.handleDelete.bind(this);
+export default function RenderExperience(props) {
+	const [isEditable, setIsEditable] = useState(false);
+
+	function handleForm() {
+		setIsEditable(!isEditable);
 	}
 
-	handleForm() {
-		this.setState({
-			isEditable: !this.state.isEditable,
-		});
-	}
-
-	handleDelete() {
-		this.props.deleteExperience(this.props.id);
-	}
-
-	displayExp() {
-		if (this.state.isEditable && !this.props.isReadOnly) {
+	function displayExp() {
+		if (isEditable && !props.isReadOnly) {
 			return (
 				<div>
 					<IconButton
 						aria-label="delete"
 						color="secondary"
 						className="float-right pb-0"
-						onClick={this.handleDelete}
+						onClick={() => props.deleteExperience(props.id)}
 					>
 						<DeleteIcon />
 					</IconButton>
 					<ExperienceForm
-						addExperience={this.props.editExperience}
-						id={this.props.id}
-						organisation={this.props.organisation}
-						position={this.props.position}
-						description={this.props.description}
-						startDate={this.props.startDate}
-						endDate={this.props.endDate}
-						closeForm={this.handleForm}
-						isReadOnly={this.props.isReadOnly}
+						addExperience={props.editExperience}
+						id={props.id}
+						organisation={props.organisation}
+						position={props.position}
+						description={props.description}
+						startDate={props.startDate}
+						endDate={props.endDate}
+						closeForm={handleForm}
+						isReadOnly={props.isReadOnly}
 					/>
 				</div>
 			);
@@ -53,21 +40,25 @@ export default class RenderExperience extends React.Component {
 		return (
 			<div className="d-flex">
 				<div>
-					<Typography className="subtitle1 info-text">{this.props.position}</Typography>
+					<Typography className="subtitle1 info-text">
+						{props.position}
+					</Typography>
 					<Typography className="heading subtitle2 info-text">
-						{this.props.organisation}
+						{props.organisation}
 					</Typography>
 					<Typography className="body-1">
-						{this.props.startDate} - {this.props.endDate}
+						{props.startDate} - {props.endDate}
 					</Typography>
-					<Typography className="info-text body-1">{this.props.description}</Typography>
+					<Typography className="info-text body-1">
+						{props.description}
+					</Typography>
 				</div>
-				{!this.props.isReadOnly && (
+				{!props.isReadOnly && (
 					<IconButton
 						aria-label="edit"
 						className="icon-btn"
-						onClick={this.handleForm}
-						id={this.props.id}
+						onClick={handleForm}
+						id={props.id}
 					>
 						<EditIcon />
 					</IconButton>
@@ -76,7 +67,5 @@ export default class RenderExperience extends React.Component {
 		);
 	}
 
-	render() {
-		return this.displayExp();
-	}
+	return displayExp();
 }
